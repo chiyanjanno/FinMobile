@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+    z
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user != undefined">
+    Welcome {{ user["Admin_name"] }} 
+  </div>
+  
+  
+  <ion-card class="home-card">
+    
+    <ion-card-header>
+      <ion-card-title text-center color="secondary"><b>Facet technologies</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p> <ion-text text-center><h2><b><i>Group Balance</i></b></h2></ion-text> </p>
+      <p> <ion-text text-center><h3>1,200,000</h3></ion-text> </p>  
+     </ion-card-content>
+ </ion-card>
+ <ion-card class="loans">
+    <ion-card-header>
+      <ion-card-title color="secondary"><h3><b><i>Loans summary</i></b></h3></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p> <ion-text><h3>Total borrowed</h3></ion-text> </p>
+      <p> <ion-text><h3>Total paid</h3></ion-text> </p>
+      <p> <ion-text><h3>Total loan balance</h3></ion-text> </p>
+      <p> <ion-text><h3>Total interests</h3></ion-text> </p>
+    
+     </ion-card-content>
+ </ion-card>
+    
+<ion-card class=""><ion-card-header>
+      <ion-card-title color="secondary"><b>Contributions summary</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p> <ion-text><h3>Total contributed</h3></ion-text> </p>
+      <p> <ion-text><h3>Total not paid </h3></ion-text> </p>
+      <p> <ion-text><h3>Total contributed</h3></ion-text> </p>   
+     </ion-card-content>
+</ion-card>
+     
+<ion-card class=""><ion-card-header>
+  <ion-card-title color="secondary"><b>Fines summary</b></ion-card-title>
+</ion-card-header>
+<ion-card-content>
+  <p> <ion-text><h3>Total fines</h3></ion-text> </p>
+  <p> <ion-text><h3>Total not paid </h3></ion-text> </p>
+  <p> <ion-text><h3>Total contributed</h3></ion-text> </p>   
+ </ion-card-content>
+</ion-card>
+        
+</ion-content>

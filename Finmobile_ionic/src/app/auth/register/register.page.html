@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title>Group registration</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="dismissRegister()" defaultHref="/login">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <img width="200" height="200" src="assets/logo.png"  alt="image not found" style="margin-left: 90px;">
+  </div>
+  
+  <p><ion-text class="register">
+   <b>Note</b>:The services to be included in the group, will depend on the group-type chosen
+  </ion-text>
+  </p>  
+
+  <form #form="ngForm" (ngSubmit)="register(form)" method="post">
+ 
+    <p>
+    <ion-text class="register"><b><i>1.Group details</i></b></ion-text>
+    </p>
+    <ion-item class = "item-input item select">
+       <ion-text>Group type</ion-text>
+       <ion-input ngModel name="gtype"></ion-input>
+      <select>
+        <option selected>Village Bank/ banki nkhonde</option>
+        <option selected>Usury/Chipelegano</option>
+      </select> 
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Group Name</ion-label>
+      <ion-input type="text" ngModel name="gname"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Number of members</ion-label>
+      <ion-input type="number" ngModel name="tmembers"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      
+      <ion-label position="floating">Cycle starting date</ion-label>
+      <p><ion-input type="date" ngModel name="sdate"></ion-input></p>
+    </ion-item>
+
+
+    <ion-item>
+      
+      <ion-label position="floating">Cycle ending date</ion-label>
+      <p><ion-input type="date" ngModel name="edate"></ion-input></p>
+    </ion-item>
+      <p>
+
+       <ion-text class="register">
+        <b><i> 2. Member details</i></b>
+       </ion-text> 
+      </p>
+      <ion-item>
+      <ion-label position="floating">First name</ion-label>
+        <ion-input type="text" ngModel name="fname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Last name</ion-label>
+          <ion-input type="text" ngModel name="lname"></ion-input>
+        </ion-item>
+
+      <ion-item>
+      <ion-label position="floating">Phone number</ion-label>
+        <ion-input type="number" ngModel name="pnumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email address</ion-label>
+          <ion-input type="email" ngModel name="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+          <ion-input type="Number" ngModel name="Password"></ion-input>
+      </ion-item>
+      
+      <ion-item class = "item-input item select">
+        <ion-text>Group post</ion-text>
+        <ion-input ngModel name="gtype"></ion-input>
+       <select>
+         <option selected>Group Administrator</option>
+         <option selected>Member</option>
+       </select> 
+     </ion-item>
+ 
+      <ion-item>
+        <ion-label position="floating">Current home address</ion-label>
+        <ion-input type="text" ngModel name="address"></ion-input>
+      </ion-item>
+
+     
+  <p>
+  <ion-button  expand="block" type="submit"   shape = "round" size="medium">
+    <h4>Register</h4> 
+    </ion-button>
+  </p>
+
+  </form>
+
+
+  <p text-center>Already have a Group?</p>
+  <ion-button  expand ="block"color="secondary" shape="round" size="medium" (click)="loginModal()"  href="/login"><h4>Login</h4> </ion-button >
+</ion-content>
