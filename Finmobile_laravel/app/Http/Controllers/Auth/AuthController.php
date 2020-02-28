@@ -11,11 +11,11 @@ class AuthController extends Controller
 {
     public function login(Request $request) {
         $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+            //'email' => 'required|string|email',
+            'password' => 'required|string'
             //'remember_me' => 'boolean'
         ]);
-        $credentials = request(['email','password']);
+        $credentials = request(['password']);
         if(!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
@@ -40,7 +40,9 @@ class AuthController extends Controller
             'fname' => 'required|string',
             'lname' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'gname'=> 'required|string|gname|unique:users',
+            'pnumber'=>'required|string'
         ]);
         $user = new User;
         $user->first_name = $request->fname;

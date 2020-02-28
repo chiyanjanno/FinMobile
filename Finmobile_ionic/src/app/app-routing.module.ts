@@ -43,6 +43,22 @@ const routes: Routes = [
 
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthGuard] },
   { path: 'chatroom', loadChildren: './chatroom/chatroom.module#ChatroomPageModule', canActivate: [AuthGuard] },
+  {
+    path: 'adduser',
+    loadChildren: () => import('./adduser/adduser.module').then( m => m.AdduserPageModule)
+  },
+  {
+    path: 'approveloans',
+    loadChildren: () => import('./approveloans/approveloans.module').then( m => m.ApproveloansPageModule)
+  },
+  {
+    path: 'events',
+    loadChildren: () => import('./events/events.module').then( m => m.EventsPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
 ];
 
 @NgModule({

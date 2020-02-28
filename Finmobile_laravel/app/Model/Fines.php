@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fines extends Model
 {
-    protected $fillable=['usersid','fines']; 
+    protected $fillable=['member_name','fines']; 
 }

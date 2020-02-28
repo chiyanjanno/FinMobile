@@ -61,14 +61,10 @@
        </ion-text> 
       </p>
       <ion-item>
-      <ion-label position="floating">First name</ion-label>
-        <ion-input type="text" ngModel name="fname"></ion-input>
+      <ion-label position="floating">Full name</ion-label>
+        <ion-input type="text" ngModel name="name"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Last name</ion-label>
-          <ion-input type="text" ngModel name="lname"></ion-input>
-        </ion-item>
 
       <ion-item>
       <ion-label position="floating">Phone number</ion-label>
@@ -87,7 +83,7 @@
       
       <ion-item class = "item-input item select">
         <ion-text>Group post</ion-text>
-        <ion-input ngModel name="gtype"></ion-input>
+        <ion-input ngModel name="gpost"></ion-input>
        <select>
          <option selected>Group Administrator</option>
          <option selected>Member</option>
@@ -101,7 +97,7 @@
 
      
   <p>
-  <ion-button  expand="block" type="submit"   shape = "round" size="medium">
+  <ion-button  type="submit" expand="block"  shape = "round" size="medium">
     <h4>Register</h4> 
     </ion-button>
   </p>
@@ -110,5 +106,5 @@
 
 
   <p text-center>Already have a Group?</p>
-  <ion-button  expand ="block"color="secondary" shape="round" size="medium" (click)="loginModal()"  href="/login"><h4>Login</h4> </ion-button >
+  <ion-button  expand ="block" color="secondary" shape="round" size="medium" (click)="loginModal()"  href="/login"><h4>Login</h4> </ion-button >
 </ion-content>

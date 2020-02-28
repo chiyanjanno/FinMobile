@@ -17,6 +17,8 @@ export class AuthService {
     private storage: NativeStorage,
     private env: EnvService,
   ) { }
+
+  
   login(password: number) {
     return this.http.post(this.env.API_URL + 'auth/login',
       {password: password}
@@ -35,9 +37,9 @@ export class AuthService {
       }),
     );
   }
-  register(gtype: String, gname: String, sdate: Date, edate:Date,fname:String,lname:String,gpost:String, pnumber:number, address:String, email: String, password: number, tmembers:number) {
+  register(gtype: String, gname: String, sdate: Date, edate:Date,name:String,gpost:String, pnumber:number, address:String, email: String, password: number, tmembers:number) {
     return this.http.post(this.env.API_URL + 'auth/register',
-      {gtype: gtype, gname: gname,sdate:sdate,gpost:gpost,fname:fname,lname:lname,edate:edate,pnumber:pnumber,address:address, tmembers:tmembers, email: email, password: password}
+      {gtype: gtype, gname: gname,sdate:sdate,gpost:gpost,name:name,edate:edate,pnumber:pnumber,address:address, tmembers:tmembers, email: email, password: password}
     )
   }
   logout() {

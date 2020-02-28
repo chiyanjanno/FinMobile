@@ -10,7 +10,11 @@
 
   <ion-card class="user-card">
     <ion-card-header>
-      <ion-card-title text-center color="secondary"><b>Chiyanjano Kamwendo</b></ion-card-title>
+      <ion-card-title text-center color="secondary"><b> 
+         <div *ngIf="user != undefined">
+        Welcome {{ user["name"]  }} 
+    </div></b>
+  </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>

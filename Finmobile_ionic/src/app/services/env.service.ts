@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class EnvService {
 
-  API_URL = 'http://localhost:8000/api/';
+  API_URL = 'http://192.168.43.125:8000/api/';
 
   constructor() { }
 }

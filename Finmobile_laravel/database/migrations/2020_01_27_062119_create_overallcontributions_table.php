@@ -15,7 +15,7 @@ class CreateOverallcontributionsTable extends Migration
     {
         Schema::create('overallcontributions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('usersid');
+            $table->string('users_id');
             $table->Integer('socialwelfaresid');
             $table->Integer('finesid');
             $table->Integer('loansid');

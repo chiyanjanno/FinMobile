@@ -40,8 +40,7 @@ export class RegisterPage implements OnInit {
        form.value.tmembers,
        form.value.pnumber,
        form.value.address,
-       form.value.fname,
-       form.value.lname,
+       form.value.name,
        form.value.gpost).subscribe(
       data => {
         this.authService.login(form.value.password).subscribe(
@@ -52,7 +51,7 @@ export class RegisterPage implements OnInit {
           },
           () => {
             this.dismissRegister();
-            this.navCtrl.navigateRoot('/dashboard');
+            this.navCtrl.navigateRoot('/tabs');
           }
         );
         this.alertService.presentToast(data['message']);

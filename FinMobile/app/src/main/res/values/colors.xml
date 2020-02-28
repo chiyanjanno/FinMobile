@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0099FF</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="facetblue">#0099FF</color>
+    <color name="facetgold">#FdB813</color>
+    <color name="yellow">#CDDC39</color>
+    <color name="green">#4CAF50</color>
+    <color name="seablue">#66CDAA</color>
+    <color name="black">#000000</color>
+    <color name="bluegrey">#6078bd</color>
+    <color name="blue">#2196f3</color>
+    <color name="drier2">#696969</color>
+    <color name="white">#fffafa</color>
+    <color name="yellowish">#ffcc40</color>
+    <color name="darkgreen">#11593C</color>
+    <color name="Lightgreen">#8BC34A</color>
+    <color name="fish">#cccccc</color>
+    <color name="meat">#990000</color>
+    <color name="meat1">#ff00ff</color>
+    <color name="meat2">#99ffff</color>
+    <color name="Gold1">#ffdf00</color>
+    <color name="Gold2">#cfb539</color>
+    <color name="Gold3">#D4af37</color>
+
+
+</resources>

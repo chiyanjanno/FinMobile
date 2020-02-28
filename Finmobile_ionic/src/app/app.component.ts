@@ -72,8 +72,14 @@ export class AppComponent {
       icon  : "mail"
     },
     {
+      title : "Events",
+      url   : "/events",
+      icon  : "calendar"
+    },
+
+    {
       title : "Settings",
-      url   : "/login",
+      url   : "/settings",
       icon  : "settings"
     },
     {
