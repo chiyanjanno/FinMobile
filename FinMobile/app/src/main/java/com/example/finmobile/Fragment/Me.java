@@ -1,6 +1,7 @@
 package com.example.finmobile.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.finmobile.LoanRequest;
 import com.example.finmobile.R;
 
 /**
@@ -72,8 +74,20 @@ public class Me extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_me, container, false);
+        View view=inflater.inflate(R.layout.fragment_me, container, false);
+
+        //return inflater.inflate(R.layout.fragment_me, container, false);
+        Button button4 = (Button) view.findViewById(R.id.button4);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LoanRequest.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -6,27 +6,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.core.view.GravityCompat;
 import com.example.finmobile.Fragment.Chatroom;
 import com.example.finmobile.Fragment.Events;
 import com.example.finmobile.Fragment.Group;
 import com.example.finmobile.Fragment.Home;
 import com.example.finmobile.Fragment.Me;
-import com.example.finmobile.Fragment.Membermanagement;
 import com.example.finmobile.Fragment.Notifications;
-import com.example.finmobile.Fragment.Settings;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import androidx.core.view.GravityCompat;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
@@ -50,7 +42,6 @@ public class Dashboard extends AppCompatActivity
         implements Home.OnFragmentInteractionListener,
                     Group.OnFragmentInteractionListener,
         Chatroom.OnFragmentInteractionListener,
-        Settings.OnFragmentInteractionListener,
         Events.OnFragmentInteractionListener,
         Notifications.OnFragmentInteractionListener,
         Me.OnFragmentInteractionListener
@@ -66,8 +57,8 @@ public class Dashboard extends AppCompatActivity
 
     // urls to load navigation header background image
     // and profile image
-   private static final String urlNavHeaderBg = "https://api.androidhive.info/images/nav-menu-header-bg.jpg";
-    private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
+   //private static final String urlNavHeaderBg = "https://api.androidhive.info/images/nav-menu-header-bg.jpg";
+    //private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -79,8 +70,6 @@ public class Dashboard extends AppCompatActivity
     private static final String TAG_GROUP = "group";
     private static final String TAG_CHATROOM = "chatroom";
     private static final String TAG_EVENTS = "events";
-    private static final String TAG_SETTINGS = "settings";
-    private static final String TAG_MEMBER_MANAGEMENT = "membermanagement";
     public static String CURRENT_TAG = TAG_HOME;
 
     // toolbar titles respected to selected nav menu item
@@ -149,7 +138,7 @@ public class Dashboard extends AppCompatActivity
         txtWebsite.setText("www.Finmobile.facetlive.");
 
         // loading header background image
-        Glide.with(this).load(urlNavHeaderBg)
+     /* Glide.with(this).load(urlNavHeaderBg)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imgNavHeaderBg);
@@ -163,7 +152,7 @@ public class Dashboard extends AppCompatActivity
                 .into(imgProfile);
 
         // showing dot next to notifications label
-        navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+        navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);*/
     }
 
     /***
@@ -195,7 +184,7 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void run() {
                 // update the main content by replacing fragments
-                Fragment fragment = getHome();
+                Fragment fragment = getHomeFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                         android.R.anim.fade_out);
@@ -219,7 +208,7 @@ public class Dashboard extends AppCompatActivity
         invalidateOptionsMenu();
     }
 
-    private Fragment getHome() {
+    private Fragment getHomeFragment() {
         switch (navItemIndex) {
             case 0:
                 // home
@@ -229,30 +218,24 @@ public class Dashboard extends AppCompatActivity
                 // chatroom
                Me meFragment = new Me();
                 return meFragment;
-
             case 2:
-                // chatroom
-                Chatroom chatroomFragment = new Chatroom();
-                return chatroomFragment;
-            case 3:
                 // group fragment
                 Group groupFragment = new Group();
                 return groupFragment;
+            case 3:
+                Events eventsFragment = new Events();
+                return  eventsFragment;
             case 4:
+                // chatroom
+                Chatroom chatroomFragment = new Chatroom();
+                return chatroomFragment;
+
+            case 5:
                 // notifications fragment
                 Notifications notificationsFragment = new Notifications();
                 return notificationsFragment;
-            case 5:
-                Events eventsFragment = new Events();
-                return  eventsFragment;
-            case 6:
-                // settings fragment
-                Membermanagement membermanagementFragment = new Membermanagement();
-                return membermanagementFragment;
-            case 7:
-                // settings fragment
-                Settings settingsFragment = new Settings();
-                return settingsFragment;
+
+
             default:
                 return new Home();
         }
@@ -291,7 +274,7 @@ public class Dashboard extends AppCompatActivity
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_GROUP;
                         break;
-                    case R.id.nav_events:
+                   case R.id.nav_events:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_EVENTS;
                         break;
@@ -303,14 +286,28 @@ public class Dashboard extends AppCompatActivity
                         navItemIndex = 5;
                         CURRENT_TAG = TAG_NOTIFICATIONS;
                         break;
-                    case R.id.nav_member_management:
-                        navItemIndex = 6;
-                        CURRENT_TAG = TAG_MEMBER_MANAGEMENT;
-                        break;
-                    case R.id.nav_settings:
-                        navItemIndex = 7;
-                        CURRENT_TAG = TAG_SETTINGS;
-                        break;
+
+                     case R.id.nav_settings:
+                        // launch new intent instead of loading fragment
+                        startActivity(new Intent(Dashboard.this, SettingsActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
+                    case R.id.nav_memberlists:
+                        // launch new intent instead of loading fragment
+                        startActivity(new Intent(Dashboard.this, Memberlists.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_add_members:
+                        // launch new intent instead of loading fragment
+                        startActivity(new Intent(Dashboard.this, Addmember.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_member_loans:
+                        // launch new intent instead of loading fragment
+                        startActivity(new Intent(Dashboard.this, Membersloans.class));
+                        drawer.closeDrawers();
+                        return true;
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(Dashboard.this, AboutUs.class));
@@ -395,7 +392,7 @@ public class Dashboard extends AppCompatActivity
         }
 
         // when fragment is notifications, load the menu created for notifications
-        if (navItemIndex == 3) {
+        if (navItemIndex == 5) {
             getMenuInflater().inflate(R.menu.notifications, menu);
         }
         return true;
@@ -410,7 +407,12 @@ public class Dashboard extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();
+            Login.email.setText("");
+            Login.password2.setText("");
+            Intent logout = new Intent(getApplicationContext(), Login.class);
+            startActivity(logout);
+
+            Toast.makeText(getApplicationContext(), "user logged out!", Toast.LENGTH_LONG).show();
             return true;
         }
 

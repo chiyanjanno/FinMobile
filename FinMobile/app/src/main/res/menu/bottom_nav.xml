@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/contributions"
+        android:enabled="true"
+        android:textSize="20sp"
+        android:icon="@drawable/loan"
+        android:title="@string/contributions"
+        app:showAsAction="ifRoom" />
+
+    <item
+    android:id="@+id/welfare"
+    android:enabled="true"
+        android:textSize="20sp"
+    android:icon="@drawable/welfare"
+    android:title="@string/welfare"
+    app:showAsAction="ifRoom" />
+
+    <item
+    android:id="@+id/loans"
+    android:enabled="true"
+        android:textSize="20sp"
+        android:icon="@drawable/loans"
+    android:title="@string/loan"
+    app:showAsAction="ifRoom" />
+
+    <item
+    android:id="@+id/fines"
+    android:enabled="true"
+        android:icon="@drawable/redcard"
+    android:title="@string/fines"
+        android:textSize="20sp"
+    app:showAsAction="ifRoom" />
+
+</menu>

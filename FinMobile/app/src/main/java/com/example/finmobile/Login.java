@@ -26,9 +26,10 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity {
     Button btn2, btn3, btn4;
-    private EditText email, password2;
-    //private static String login_url = "http://192.168.1.6/login.php";
-    private static String login_url = "http://192.168.43.125/login.php";
+    public static EditText email, password2;
+    //private static String login_url = "http://192.168.1.3/login.php";
+    private static String login_url = "http://192.168.1.6/login.php";
+  //  private static String login_url = "http://192.168.43.125/login.php";
    // private static String login_url = "http://192.168.1.6:81/api/auth/login";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String user = email.getText().toString().trim();
                 String pass = password2.getText().toString().trim();
+                //validation
 
                 if (!user.isEmpty()|| !pass.isEmpty()){
                     Log(user,pass);
@@ -99,6 +101,7 @@ public class Login extends AppCompatActivity {
                                 Intent intent=new Intent(Login.this,Dashboard.class);
                                 intent.putExtra("Full_name",Full_name);
                                 intent.putExtra("email",email);
+
                                 Toast.makeText(getApplicationContext(),"Login SuccessFull", Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }else {

@@ -1,5 +1,6 @@
 package com.example.finmobile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -34,15 +36,16 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Button btn5, btn6;
+    Button btn5, next;
     EditText group_name, number_of_members, cycle_start_date, cycle_end_date, Full_name, current_home_address, email, password,phone_number,
-            group_type;
+            group_type,group_post,last_name;
 
     Spinner spin;
 
    // private static String API_URL = "http://192.168.1.6:81/api/auth/register";
-   //private static String API_URL = "http://192.168.1.6/register.php";
-    private static String API_URL = "http://192.168.43.125/register.php";
+    //private static String API_URL = "http://192.168.1.3/register.php";
+    private static String API_URL = "http://192.168.1.6/groupsign.php";
+   // private static String API_URL = "http://192.168.43.125/groupsign.php";
     String[] Grouptypename = {"Villagebank/Banki Nkhonde", "Usury/chipelegano"};
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -50,34 +53,25 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         group_name = (EditText) findViewById(R.id.group_name);
         number_of_members = (EditText) findViewById(R.id.number_of_members);
         cycle_start_date = (EditText) findViewById(R.id.cycle_start_date);
         cycle_end_date = (EditText) findViewById(R.id.cycle_end_date);
-        Full_name = (EditText) findViewById(R.id.Full_name);
-        current_home_address = (EditText) findViewById(R.id.current_home_address);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        phone_number = (EditText)findViewById(R.id.phone_number);
-        group_type = findViewById(R.id.group_type);
+         group_type=(EditText) findViewById(R.id.group_type);
 
 
 
-        btn5 = findViewById(R.id.button2);
-        btn5.setOnClickListener(new View.OnClickListener() {
+        next = findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(Register.this, Login.class));
-                //calling method to register user below
                 Reg();
-          }
-        });
 
-        btn6 = findViewById(R.id.button3);
-        btn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Register.this, Login.class));
             }
         });
 
@@ -137,6 +131,16 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 */
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id== android.R.id.home){
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void updateLabel(){
         String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -147,21 +151,17 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
 
 //Making volley Requests
-    private void Reg(){
+private void Reg(){
 
-       btn5.setVisibility(View.GONE);
+    //btn5.setVisibility(View.GONE);
 
-        final String group_name = this.group_name.getText().toString().trim();
-        final String number_of_members = this.number_of_members.getText().toString().trim();
-        final String cycle_start_date= this.cycle_start_date.getText().toString().trim();
-        final String cycle_end_date = this. cycle_end_date.getText().toString().trim();
-        final String Full_name = this.Full_name.getText().toString().trim();
-        final String current_home_address = this.current_home_address.getText().toString().trim();
-        final String email = this.email.getText().toString().trim();
-        final String password = this.password.getText().toString().trim();
-        final String phone_number = this.phone_number.getText().toString().trim();
-        final String group_type =this.group_type.getText().toString().trim();
-      //  final String GroupType = spin.getSelectedItem().toString().trim();
+    final String group_name = this.group_name.getText().toString().trim();
+    final String number_of_members = this.number_of_members.getText().toString().trim();
+    final String cycle_start_date= this.cycle_start_date.getText().toString().trim();
+    final String cycle_end_date = this. cycle_end_date.getText().toString().trim();
+    final String group_type =this.group_type.getText().toString().trim();
+
+    //  final String GroupType = spin.getSelectedItem().toString().trim();
 
      /*   if (TextUtils.isEmpty(Full_name)) {
             Full_name.setError("Please enter Full name");
@@ -187,12 +187,19 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             return;
         }
 */
-        StringRequest stringRequest= new StringRequest(Request.Method.POST, API_URL ,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(Register.this,response,Toast.LENGTH_LONG).show();
-                    }
+    StringRequest stringRequest= new StringRequest(Request.Method.POST, API_URL ,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Intent intent=new Intent(Register.this,Addmember.class);
+                    //intent.putExtra("Full_name",Full_name);
+                    //intent.putExtra("email",email);
+                    Toast.makeText(Register.this,response,Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+
+
+                    // btn5.setVisibility(View.GONE);
+                }
                    /* try{
                         JSONObject jsonObject= new JSONObject(response);
                         String success =jsonObject.getString("");
@@ -208,31 +215,26 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                     }
                     }*/
 
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Register.this, "Registration error"+ error.toString(), Toast.LENGTH_LONG).show();
-                        btn5.setVisibility(View.VISIBLE);
-                    }
-                }) {
-              @Override
-               protected Map<String, String> getParams() throws AuthFailureError {
-                   Map<String, String> params = new HashMap<>();
-                   params.put("group_name", group_name);
-                  // params.put("spin", GroupType);
-                   params.put("number_of_members",number_of_members);
-                   params.put("cycle_start_date",cycle_start_date);
-                   params.put("cycle_end_date", cycle_end_date);
-                   params.put("email", email);
-                   params.put("phone_number", phone_number);
-                   params.put("Full_name", Full_name);
-                   params.put("password", password);
-                   params.put("current_home_address", current_home_address);
-                   params.put("group_type",group_type);
-                   return params;
-               }
-           };
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(Register.this, "Registration error"+ error.toString(), Toast.LENGTH_LONG).show();
+                    next.setVisibility(View.VISIBLE);
+                }
+            }) {
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put("group_name", group_name);
+            // params.put("spin", GroupType);
+            params.put("number_of_members",number_of_members);
+            params.put("cycle_start_date",cycle_start_date);
+            params.put("cycle_end_date", cycle_end_date);
+            params.put("group_type",group_type);
+            return params;
+        }
+    };
          /*
 
             @Override
@@ -255,10 +257,10 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         };
 
              */
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(stringRequest);
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+    requestQueue.add(stringRequest);
 
-    }
+}
 //Performing action onItemSelected and onNothing selected
 
     @Override
